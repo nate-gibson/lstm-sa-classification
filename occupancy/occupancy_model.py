@@ -8,6 +8,9 @@ Models adapted from: https://machinelearningmastery.com/how-to-develop-rnn-model
 Layers.py from: https://github.com/ajbrookhouse/SelfAttention by Aaron Brookhouse
 """
 
+# Some code is copied from the machinelearningmastery.com article
+# (particularly the models) but the vast majority is original work:
+
 import math
 from numpy import mean
 from numpy import std
