@@ -89,16 +89,17 @@ def get_data(filename):
 
 # fit and evaluate a model using an LSTM layer
 def evaluate_lstm(trainX, trainy, testX, testy):
-	#stuff to tune:
+    #stuff to tune:
 	epochs = 5
-	
+	dropout = 0.66
+    
 	verbose, batch_size = 1, 32
 	n_timesteps, n_features, n_outputs = trainX.shape[1], trainX.shape[2], trainy.shape[1]
 	model = Sequential()
 	model.add(LSTM(100, input_shape=(n_timesteps,n_features))) # LSTM layer
 	
 	# Same layers on both models:
-	model.add(Dropout(0.5))
+	model.add(Dropout(dropout))
 	model.add(Dense(100, activation='relu'))
 	model.add(Dense(n_outputs, activation='softmax'))
 	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -111,9 +112,10 @@ def evaluate_lstm(trainX, trainy, testX, testy):
 # fit and evaluate a model using an SPE and Self-Attention layer
 def evaluate_attn(trainX, trainY, testX, testY):
 	#stuff to tune:
-	kqlen = 8 # key/query length
-	vlen = 8 # value length
-	epochs = 4
+	kqlen = 16 # key/query length
+	vlen = 16 # value length
+	epochs = 20
+	dropout = 0.5
 	
 	verbose, batch_size = 1, 32
 	n_outputs = trainY.shape[1]
@@ -122,7 +124,7 @@ def evaluate_attn(trainX, trainY, testX, testY):
 	# Add Sinusoidal Positional Encoding Layer:
 	model.add(AddSinusoidalPositionalEncodings())
 	# Add Self-Attention Layer, (can use sa or mh-sa):
-	model.add(SelfAttention(kqlen,vlen,return_sequence=False, dropout=.5))
+	model.add(SelfAttention(kqlen,vlen,return_sequence=False, dropout=dropout))
 	
 	# Same layers on both models:
 	model.add(Dense(100, activation='relu'))
@@ -160,7 +162,7 @@ def run_experiment(trials, method, trainX, trainY, testX, testY):
 def run_experiments(num_lstm, num_sa):
 	# load training and testing data
 	trainX, trainY = get_data('datatraining.txt')
-	testX, testY = get_data('datatest.txt') # (2 test files to choose from)
+	testX, testY = get_data('datatest2.txt') # (2 test files to choose from)
 	print("Data shape:", trainX.shape, trainY.shape, testX.shape, testY.shape, "\n\n")
 	
 	# run trials
