@@ -4,6 +4,7 @@ Created on Wed Dec  2 12:14:47 2020
 
 @author: Nate
 
+Data from: https://archive.ics.uci.edu/ml/datasets/human+activity+recognition+using+smartphones
 Adapted from: https://machinelearningmastery.com/how-to-develop-rnn-models-for-human-activity-recognition-time-series-classification/
 Layers.py from: https://github.com/ajbrookhouse/SelfAttention by Aaron Brookhouse
 """
