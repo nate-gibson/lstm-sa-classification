@@ -91,7 +91,7 @@ def get_data(filename):
 def evaluate_lstm(trainX, trainy, testX, testy):
     #stuff to tune:
 	epochs = 5
-	dropout = 0.66
+	dropout = 0.5
     
 	verbose, batch_size = 1, 32
 	n_timesteps, n_features, n_outputs = trainX.shape[1], trainX.shape[2], trainy.shape[1]
@@ -183,7 +183,7 @@ def run_experiments(num_lstm, num_sa):
 		summarize_results(sa_scores, sa_times)
 		print('Trials:', num_sa, "\n")
 
-# summarize scores and times
+# print summary of scores and times
 def summarize_results(scores, times):
 	m, s = mean(scores), std(scores)
 	print('Accuracy: %.3f%% (+/-%.3f)' % (m, s))
