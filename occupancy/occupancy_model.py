@@ -4,7 +4,7 @@ Created on Wed Dec  2 11:33:27 2020
 
 @author: Nate
 
-Data from: https://archive.ics.uci.edu/ml/datasets/Occupancy+Detection+
+Data from: https://archive.ics.uci.edu/ml/datasets/human+activity+recognition+using+smartphones
 Models adapted from: https://machinelearningmastery.com/how-to-develop-rnn-models-for-human-activity-recognition-time-series-classification/
 Layers.py from: https://github.com/ajbrookhouse/SelfAttention by Aaron Brookhouse
 """
